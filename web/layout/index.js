@@ -10,7 +10,7 @@ if (__isBrowser__) {
 }
 
 // 为了同时兼容ssr/csr请保留此判断，如果你的layout没有内容请使用 props.children ? <div>{ props.children }</div> : ''
-const commonNode = props => (props.children ? <div className='normal'>{props.children}</div> : null)
+const commonNode = props => (props.children ? __isBrowser__ ? props.children : <div className='router-wrapper'>{props.children}</div> : null)
 
 const Layout = (props) => {
   if (__isBrowser__) {
@@ -30,10 +30,7 @@ const Layout = (props) => {
           }
         </head>
         <body>
-          <div style={{ display: 'none' }} id='app'>{commonNode(props)}</div>
-          <script dangerouslySetInnerHTML={{
-            __html: ` document.querySelector('html').addEventListener('DOMNodeInserted',function(){document.getElementById('app').style.display = 'block';})`
-          }} />
+          <div id='app'>{commonNode(props)}</div>
           {
             serverData && <script dangerouslySetInnerHTML={{
               __html: `window.__USE_SSR__=true; window.__INITIAL_DATA__ =${serialize(serverData)}`

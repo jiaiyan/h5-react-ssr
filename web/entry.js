@@ -8,6 +8,8 @@ import { routes as Routes } from '../config/config.ssr'
 import defaultLayout from '@/layout'
 import models from './models'
 
+const { CSSTransition, TransitionGroup } = require('react-transition-group');
+
 const initDva = (options) => {
   const app = dva(options)
   models.forEach(m => app.model(m))
@@ -39,26 +41,24 @@ const getSceneConfig = location => {
 
 let oldLocation = null;
 const Routess = withRouter(({ location, history, store }) => {
-  const { CSSTransition, TransitionGroup } = require('react-transition-group');
   // 转场动画应该都是采用当前页面的sceneConfig，所以：
   // push操作时，用新location匹配的路由sceneConfig
   // pop操作时，用旧location匹配的路由sceneConfig
   let classNames = '';
   if (history.action === 'PUSH') {
-    classNames = 'forward-' + getSceneConfig(location).enter;
+    classNames = 'normal forward-' + getSceneConfig(location).enter;
   } else if (history.action === 'POP' && oldLocation) {
-    classNames = 'back-' + getSceneConfig(oldLocation).exit;
+    classNames = 'normal back-' + getSceneConfig(oldLocation).exit;
   }
   // 更新旧location
   oldLocation = location;
-  
   return (
     <TransitionGroup
       className={'router-wrapper'}
       childFactory={child => React.cloneElement(child, { classNames })}
     >
       <CSSTransition timeout={500} key={location.pathname}>
-        <Switch location={location}>
+        <Switch location={location} >
           {Routes.map(({ path, exact, Component }) => {
             const ActiveComponent = Component()
             const Layout = ActiveComponent.Layout || defaultLayout
