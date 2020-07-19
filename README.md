@@ -1,4 +1,4 @@
-# Egg-React-SSR + antd-mobile + dva 应用骨架
+# Egg-React-SSR + antd-mobile + dva H5应用骨架
 
 实现了官方的antd与dva的example, 还实现了react animated router 及 postcss px2rem exclude
 
@@ -22,4 +22,3 @@ $ open http://localhost:7001
 - antd-mobile：[官方文档](https://mobile.ant.design/index-cn)
 - DvaJs：[官方文档](https://dvajs.com/guide/)
 
-egg-react-ssr-antd-mobile-dva

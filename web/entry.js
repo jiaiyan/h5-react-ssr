@@ -46,9 +46,9 @@ const Routess = withRouter(({ location, history, store }) => {
   // pop操作时，用旧location匹配的路由sceneConfig
   let classNames = '';
   if (history.action === 'PUSH') {
-    classNames = 'normal forward-' + getSceneConfig(location).enter;
+    classNames = 'forward-' + getSceneConfig(location).enter;
   } else if (history.action === 'POP' && oldLocation) {
-    classNames = 'normal back-' + getSceneConfig(oldLocation).exit;
+    classNames = 'back-' + getSceneConfig(oldLocation).exit;
   }
   // 更新旧location
   oldLocation = location;

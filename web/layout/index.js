@@ -10,8 +10,7 @@ if (__isBrowser__) {
 }
 
 // 为了同时兼容ssr/csr请保留此判断，如果你的layout没有内容请使用 props.children ? <div>{ props.children }</div> : ''
-const commonNode = props => (props.children ? __isBrowser__ ? props.children : <div className='router-wrapper'>{props.children}</div> : null)
-
+const commonNode = props => (props.children ? __isBrowser__ ? <div className='normal'><div className='content'>{props.children}</div></div> : <div className='router-wrapper'><div className='normal'><div className='content'>{props.children}</div></div></div> : null)
 const Layout = (props) => {
   if (__isBrowser__) {
     return commonNode(props)
@@ -39,6 +38,9 @@ const Layout = (props) => {
           <div dangerouslySetInnerHTML={{
             __html: injectScript && injectScript.join('')
           }} ></div>
+          <script async defer dangerouslySetInnerHTML={{
+            __html: `document.getElementById('app').classList.add('show');`
+          }} />
         </body>
       </html>
     )

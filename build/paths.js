@@ -62,7 +62,6 @@ module.exports = {
   appSrc: resolveApp('web'),
   entry: resolveApp('web/entry'),
   layout: resolveApp('web/layout'),
-  libSrc: resolveApp('web/lib'),
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
