@@ -14,6 +14,7 @@ const publicPath = '/'
 const isDev = process.env.NODE_ENV === 'development'
 const shouldUseSourceMap = isDev || process.env.GENERATE_SOURCEMAP
 const devtool = isDev ? 'cheap-module-source-map' : (shouldUseSourceMap ? 'source-map' : false)
+
 const optimization = {
   runtimeChunk: true,
   splitChunks: {
@@ -23,8 +24,8 @@ const optimization = {
       vendors: {
         test: (module) => {
           return module.resource &&
-          /\.js$/.test(module.resource) &&
-          module.resource.match('node_modules')
+            /\.js$/.test(module.resource) &&
+            module.resource.match('node_modules')
         },
         name: 'vendor'
       }

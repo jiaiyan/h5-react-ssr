@@ -10,9 +10,11 @@ module.exports = {
       controller: 'page',
       handler: 'index',
       sceneConfig: {  // 添加动画配置
-        enter: 'from-bottom',
-        exit: 'to-bottom'
-      }  
+        // enter: 'from-bottom',
+        // exit: 'to-bottom'
+        enter: 'from-right',
+        exit: 'to-right'
+      }
     },
     {
       path: '/news/:id',
@@ -28,12 +30,13 @@ module.exports = {
   ],
   baseDir: resolvePath('../'),
   injectCss: [
-    `/static/css/Page.chunk.css`
+    { rel: 'stylesheet', href: `/static/css/Page.chunk.css` },
+    { rel: 'manifest', href: `/manifest.json` }
   ], // 客户端需要加载的静态样式表
   injectScript: [
-    `<script src='/static/js/runtime~Page.js'></script>`,
-    `<script src='/static/js/vendor.chunk.js'></script>`,
-    `<script src='/static/js/Page.chunk.js'></script>`
+    { src: '/static/js/runtime~Page.js' },
+    { src: '/static/js/vendor.chunk.js' },
+    { src: '/static/js/Page.chunk.js' }
   ], // 客户端需要加载的静态资源文件表
   serverJs: resolvePath(`../dist/Page.server.js`),
   layout: resolvePath(`../dist/Layout.server.js`),

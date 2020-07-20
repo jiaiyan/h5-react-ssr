@@ -5,6 +5,7 @@ const paths = require('./paths')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const getStyleLoaders = require('./util').getStyleLoaders
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 const webpackModule = {
   strictExportPresence: true,
@@ -117,6 +118,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].css',
       chunkFilename: 'static/css/[name].chunk.css'
+    }),
+    // https://webpack.docschina.org/guides/progressive-web-application/
+    // https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#full_injectmanifest_config
+    new GenerateSW({
+      skipWaiting: true, // 强制等待中的 Service Worker 被激活
+      clientsClaim: true, // Service Worker 被激活后使其立即获得页面控制权
     })
   ],
   performance: false

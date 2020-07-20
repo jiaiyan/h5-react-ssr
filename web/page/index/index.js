@@ -6,16 +6,18 @@ import './index.less'
 
 function Page(props) {
   return (
-    <List>
-      {
-        props.news && props.news.map((item, i) => (
-          <List.Item key={i}>
-            <div>文章标题: {item.title}</div>
-            <Link to={`/news/${item.id}`}>点击查看详情</Link>
-          </List.Item>
-        ))
-      }
-    </List>
+    <div>
+      <List>
+        {
+          props.news && props.news.map((item, i) => (
+            <List.Item key={i}>
+              <div>文章标题: {item.title}</div>
+              <Link to={`/news/${item.id}`}>点击查看详情</Link>
+            </List.Item>
+          ))
+        }
+      </List>
+    </div>
   )
 }
 

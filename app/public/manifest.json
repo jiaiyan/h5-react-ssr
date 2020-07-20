@@ -1,0 +1,19 @@
+{
+    "name": "h5-react-ssr",
+    "short_name": "hrs",
+    "description": "H5-React-SSR应用骨架",
+    "icons": [
+        {
+            "src": "144x144.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        }
+    ],
+    "scope": "/",
+    "start_url": "/?utm_source=homescreen",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "display": "standalone",
+    "prefer_related_applications": false,
+    "lang": "zh-CN"
+}

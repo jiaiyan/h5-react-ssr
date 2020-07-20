@@ -16,7 +16,7 @@ export default {
     detail: ''
   },
   reducers: {
-    init (state, { payload }) {
+    init(state, { payload }) {
       return {
         ...state,
         detail: payload.detail
@@ -24,11 +24,24 @@ export default {
     }
   },
   effects: {
-    * getData ({ payload }, { call, put }) {
+    * getData({ payload }, { call, put }) {
       const data = yield call(getData, payload)
       yield put({
         type: 'init',
         payload: data
+      })
+      yield put({
+        type: 'system/save',
+        payload: {
+          title: data.detail,
+          meats: [{
+            name: 'description',
+            content: '详情'
+          }, {
+            name: 'keywords',
+            content: 'News'
+          }]
+        }
       })
     }
   }

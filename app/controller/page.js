@@ -4,7 +4,7 @@ const renderToStream = require('ykfe-utils/lib/renderToStream')
 const ssrConfig = require('../../config/config.ssr')
 
 class PageController extends Controller {
-  async index () {
+  async index() {
     const { ctx } = this
     try {
       // Page为webpack打包的chunkName，项目默认的entry为Page
