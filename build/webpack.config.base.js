@@ -119,9 +119,9 @@ module.exports = {
       filename: 'static/css/[name].css',
       chunkFilename: 'static/css/[name].chunk.css'
     }),
-    // https://webpack.docschina.org/guides/progressive-web-application/
-    // https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#full_injectmanifest_config
     new GenerateSW({
+      // https://webpack.docschina.org/guides/progressive-web-application/
+      // 具体配置： https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#full_injectmanifest_config
       skipWaiting: true, // 强制等待中的 Service Worker 被激活
       clientsClaim: true, // Service Worker 被激活后使其立即获得页面控制权
     })

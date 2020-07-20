@@ -10,10 +10,8 @@ module.exports = {
       controller: 'page',
       handler: 'index',
       sceneConfig: {  // 添加动画配置
-        // enter: 'from-bottom',
-        // exit: 'to-bottom'
-        enter: 'from-right',
-        exit: 'to-right'
+        enter: 'from-bottom',
+        exit: 'to-bottom'
       }
     },
     {

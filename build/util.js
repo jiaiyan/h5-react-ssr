@@ -28,7 +28,11 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
             },
             stage: 3
           }),
-          require('postcss-px2rem-exclude')({ remUnit: 75, exclude: /node_modules/i })
+          require('postcss-px2rem-exclude')({ 
+            // 设计稿750，根据设计稿来设置
+            remUnit: 75, 
+            exclude: /node_modules/i 
+          })
         ]
       }
     }
