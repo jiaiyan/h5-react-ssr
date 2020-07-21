@@ -4,6 +4,7 @@ import dva from 'dva'
 import { BrowserRouter, StaticRouter, Route, Switch, withRouter } from 'react-router-dom'
 import { getWrappedComponent, getComponent } from 'ykfe-utils'
 import { createMemoryHistory, createBrowserHistory } from 'history'
+import NProgress from 'nprogress';
 import { routes as Routes } from '../config/config.ssr'
 import defaultLayout from '@/layout'
 import models from './models'
@@ -57,7 +58,14 @@ const Routess = withRouter(({ location, history, store }) => {
       className={'router-wrapper'}
       childFactory={child => React.cloneElement(child, { classNames })}
     >
-      <CSSTransition timeout={500} key={location.pathname}>
+      <CSSTransition
+        onEnter={() => NProgress.start()}
+        onEntering={() => NProgress.inc(0.2)}
+        onEntered={() => NProgress.inc(0.4)}
+        onExit={() => NProgress.inc(0.6)}
+        onExiting={() => NProgress.inc(0.8)}
+        onExited={() => NProgress.done()}
+        timeout={500} key={location.pathname}>
         <Switch location={location} >
           {Routes.map(({ path, exact, Component }) => {
             const ActiveComponent = Component()

@@ -5,6 +5,7 @@ import './index.less'
 import serialize from 'serialize-javascript'
 import { connect } from 'dva'
 import { Helmet } from 'react-helmet'
+import 'nprogress/nprogress.css'
 
 if (__isBrowser__) {
   require("lib-flexible")
