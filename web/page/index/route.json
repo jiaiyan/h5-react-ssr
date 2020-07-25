@@ -1,0 +1,13 @@
+[
+    {
+        "path": "/",
+        "exact": true,
+        "ComponentPath": "/index",
+        "controller": "page",
+        "handler": "index",
+        "sceneConfig": {
+            "enter": "from-bottom",
+            "exit": "to-bottom"
+        }
+    }
+]

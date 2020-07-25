@@ -1,0 +1,13 @@
+[
+    {
+        "path": "/news/:id",
+        "exact": true,
+        "ComponentPath": "/news",
+        "controller": "page",
+        "handler": "index",
+        "sceneConfig": {
+            "enter": "from-right",
+            "exit": "to-right"
+        }
+    }
+]

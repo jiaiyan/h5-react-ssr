@@ -1,31 +1,8 @@
 const resolvePath = (path) => require('path').resolve(__dirname, path)
-
+const routes = require('./router')
 module.exports = {
   type: 'ssr', // 指定运行类型可设置为csr切换为客户端渲染
-  routes: [
-    {
-      path: '/',
-      exact: true,
-      Component: () => (require('@/page/index').default), // 这里使用一个function包裹为了让它延迟require
-      controller: 'page',
-      handler: 'index',
-      sceneConfig: {  // 添加动画配置
-        enter: 'from-bottom',
-        exit: 'to-bottom'
-      }
-    },
-    {
-      path: '/news/:id',
-      exact: true,
-      Component: () => (require('@/page/news').default),
-      controller: 'page',
-      handler: 'index',
-      sceneConfig: {
-        enter: 'from-right',
-        exit: 'to-right'
-      }
-    }
-  ],
+  routes,
   baseDir: resolvePath('../'),
   injectCss: [
     { rel: 'stylesheet', href: `/static/css/Page.chunk.css` },

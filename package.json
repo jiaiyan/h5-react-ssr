@@ -16,19 +16,21 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.0",
     "react-transition-group": "^4.4.1",
+    "require-context": "^1.1.0",
     "serialize-javascript": "^2.1.2",
     "ykfe-utils": "^3.0.0"
   },
   "scripts": {
     "debug": "egg-bin debug",
-    "start": "rimraf dist && concurrently \"npm run ssr\" \" npm run csr \"",
+    "start": "npm run createdRoute && rimraf dist && concurrently \"npm run ssr\" \" npm run csr \"",
     "ssr": "concurrently \"egg-bin dev\" \"cross-env NODE_ENV=development webpack --watch --config ./build/webpack.config.server.js\"",
     "csr": "cross-env NODE_ENV=development ykcli dev",
-    "prod": "npm run build && NODE_ENV=production eggctl start",
+    "prod": "npm run createdRoute && && npm run build && NODE_ENV=production eggctl start",
     "build:server": "cross-env NODE_ENV=production webpack --config build/webpack.config.server.js",
     "build:client": "cross-env NODE_ENV=production ykcli build",
-    "build": "rimraf dist && ykcli build && npm run build:server",
-    "analyze": "cross-env NODE_ENV=production npm_config_report=true npm run build"
+    "build": "npm run createdRoute && rimraf dist && ykcli build && npm run build:server",
+    "analyze": "npm run createdRoute && cross-env NODE_ENV=production npm_config_report=true npm run build",
+    "createdRoute":" rimraf config/router.js && node ./config/createdRouters.js "
   },
   "browserslist": [
     ">0.2%",
