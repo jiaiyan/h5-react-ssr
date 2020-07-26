@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import dva from 'dva'
-import { BrowserRouter, StaticRouter, Route, Switch, withRouter } from 'react-router-dom'
+import { BrowserRouter, StaticRouter, Switch, withRouter } from 'react-router-dom'
+import FancyRoute from '@/components/tools/FancyRoute'
 import { getWrappedComponent, getComponent } from 'ykfe-utils'
 import { createMemoryHistory, createBrowserHistory } from 'history'
 import NProgress from 'nprogress';
@@ -59,19 +60,13 @@ const Routess = withRouter(({ location, history, store }) => {
       childFactory={child => React.cloneElement(child, { classNames })}
     >
       <CSSTransition
-        onEnter={() => NProgress.start()}
-        onEntering={() => NProgress.inc(0.2)}
-        onEntered={() => NProgress.inc(0.4)}
-        onExit={() => NProgress.inc(0.6)}
-        onExiting={() => NProgress.inc(0.8)}
-        onExited={() => NProgress.done()}
         timeout={500} key={location.pathname}>
         <Switch location={location} >
           {Routes.map(({ path, exact, Component }) => {
             const ActiveComponent = Component()
             const Layout = ActiveComponent.Layout || defaultLayout
             const WrappedComponent = getWrappedComponent(ActiveComponent)
-            return <Route exact={exact} key={path} path={path} render={() => <Layout><WrappedComponent store={store} /></Layout>} />
+            return <FancyRoute exact={exact} key={path} path={path} render={() => <Layout><WrappedComponent store={store} /></Layout>} />
           })}
         </Switch>
       </CSSTransition>
