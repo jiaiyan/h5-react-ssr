@@ -17,7 +17,7 @@
     "react-router-dom": "^5.0.0",
     "react-transition-group": "^4.4.1",
     "require-context": "^1.1.0",
-    "serialize-javascript": "^2.1.2",
+    "serialize-javascript": "^3.1.0",
     "ykfe-utils": "^3.0.0"
   },
   "scripts": {
